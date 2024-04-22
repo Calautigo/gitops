@@ -1,0 +1,13 @@
+namespace: argocd
+helmCharts:
+- name: argo-cd
+  repo: https://argoproj.github.io/argo-helm
+  version: 6.7.14
+  releaseName: argo-cd
+  namespace: argocd
+  valuesFile: base/values.yml 
+
+resources:
+- base/namespace.yml
+- base/repository-registration.yml
+- base/application.yml
