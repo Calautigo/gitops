@@ -4,7 +4,8 @@ metadata:
   name: homeassistant-configmap
   namespace: homeassistant
 data:
-  automations.yaml: |
+  automations.yaml: |-
+
   configuration.yaml: |-
     default_config:
     frontend:

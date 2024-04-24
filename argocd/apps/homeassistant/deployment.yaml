@@ -44,23 +44,16 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-        - mountPath: /config
-          name: configmap-volume-configuration
-        - mountPath: /config
-          name: configmap-volume-automation
+        - mountPath: /config/configuration.yaml
+          subPath: configuration.yaml
+          name: configmap-volume
+        - mountPath: /config/automations.yaml
+          subPath: automations.yaml
+          name: configmap-volume
       volumes:
       - name: config
         persistentVolumeClaim:
           claimName: homeassistant-pvc
-      - name: configmap-volume-automation
+      - name: configmap-volume
         configMap:
           name: homeassistant-configmap
-          items:
-          - key: automations.yaml
-            path: automations.yaml
-      - name: configmap-volume-configuration
-        configMap:
-          name: homeassistant-configmap
-          items:
-          - key: configuration.yaml
-            path: configuration.yaml
