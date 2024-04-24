@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homeassistant
+  namespace: argocd
+spec:
+  project: local-cluster-project
+  source:
+    repoURL: http://pajikos.github.io/home-assistant-helm-chart/
+    targetRevision: 0.2.51
+    chart: home-assistant
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: homeassistant
+  syncPolicy:
+    automated:
+      selfHeal: true

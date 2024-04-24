@@ -1,0 +1,12 @@
+replicaCount: 3
+
+persistence:
+  enabled: true
+  storageClass: longhorn
+  accessMode: ReadWriteMany
+
+ingress:
+  enabled: true
+  className: "traefik"
+  hosts:
+    - "homeassistant.server.schwarz47.at"
