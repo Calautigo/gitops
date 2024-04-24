@@ -14,3 +14,9 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: homeassistant
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true

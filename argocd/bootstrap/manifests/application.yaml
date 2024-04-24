@@ -8,11 +8,9 @@ metadata:
 spec:
   project: local-cluster-project
   source:
-    path: argocd/apps
+    path: argocd/registry
     repoURL: https://git.server.schwarz47.at/dominik/kubernetes.git
     targetRevision: HEAD
-    directory:
-      recurse: true
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
