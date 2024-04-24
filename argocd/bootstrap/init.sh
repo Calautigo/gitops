@@ -21,6 +21,9 @@ echo "Configuring repository access..."
 kubectl create secret generic local-cluster-infrastructure-repo --namespace=argocd --type=Opaque --from-literal=url=$repository --from-literal=password=$git_api_token
 kubectl label secret -n argocd local-cluster-infrastructure-repo argocd.argoproj.io/secret-type=repository
 
+# Create ingress
+kubectl apply -f ingress.yaml
+
 # Create project
 echo "Creating the main project..."
 kubectl apply -f manifests/project.yaml
