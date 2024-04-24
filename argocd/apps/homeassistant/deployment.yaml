@@ -44,12 +44,12 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-        - mountPath: /config/configuration.yaml
-          subPath: configuration.yaml
-          name: configmap-file
-        - mountPath: /config/automations.yaml
-          subPath: automations.yaml
-          name: configmap-file
+        # - mountPath: /config/configuration.yaml
+        #   subPath: configuration.yaml
+        #   name: configmap-file
+        # - mountPath: /config/automations.yaml
+        #   subPath: automations.yaml
+        #   name: configmap-file
       volumes:
       - name: config
         persistentVolumeClaim:
