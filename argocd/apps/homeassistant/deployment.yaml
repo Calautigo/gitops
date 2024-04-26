@@ -33,22 +33,9 @@ spec:
         app: homeassistant
     spec:
       terminationGracePeriodSeconds: 10
-      initContainers:
-      - name: copy-config
-        image: busybox:1.28
-        command: ["/bin/sh", "-c", "cp -n /tmp/config/*.yaml /config/"]
-        volumeMounts:
-        - mountPath: /tmp/config/configuration.yaml
-          subPath: configuration.yaml
-          name: configmap-volume
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
-        env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "1000"
         resources:
           requests:
             memory: "256Mi"
@@ -60,10 +47,6 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-      volumes:
-      - name: configmap-volume
-        configMap:
-          name: homeassistant-configmap
   volumeClaimTemplates:
   - metadata:
       name: config
