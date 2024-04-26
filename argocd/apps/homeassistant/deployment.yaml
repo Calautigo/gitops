@@ -33,6 +33,14 @@ spec:
         app: homeassistant
     spec:
       terminationGracePeriodSeconds: 10
+      initContainers:
+      - name: copy-config
+        image: busybox:1.28
+        command: ["/bin/sh", "-c", "cp -n /tmp/config/*.yaml /config/"]
+        volumeMounts:
+        - mountPath: /tmp/config/configuration.yaml
+          subPath: configuration.yaml
+          name: configmap-volume
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
@@ -52,12 +60,6 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-        - mountPath: /config/configuration.yaml
-          subPath: configuration.yaml
-          name: configmap-volume
-        - mountPath: /config/automations.yaml
-          subPath: automations.yaml
-          name: configmap-volume
       volumes:
       - name: configmap-volume
         configMap:
