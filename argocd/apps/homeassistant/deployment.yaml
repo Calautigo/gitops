@@ -14,22 +14,25 @@ spec:
     targetPort: 8123
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   namespace: homeassistant
   name: homeassistant
   labels:
     app: homeassistant
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: homeassistant
+  serviceName: "homeassistant"
+  replicas: 3
+  minReadySeconds: 10
   template:
     metadata:
       labels:
         app: homeassistant
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
@@ -50,10 +53,16 @@ spec:
         - mountPath: /config/automations.yaml
           subPath: automations.yaml
           name: configmap-volume
-      volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: homeassistant-pvc
+      volume:
       - name: configmap-volume
         configMap:
           name: homeassistant-configmap
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ "ReadWriteOncePod" ]
+      storageClassName: "longhorn"
+      resources:
+        requests:
+          storage: 10Gi
