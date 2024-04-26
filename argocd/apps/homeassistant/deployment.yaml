@@ -53,7 +53,7 @@ spec:
         - mountPath: /config/automations.yaml
           subPath: automations.yaml
           name: configmap-volume
-      volume:
+      volumes:
       - name: configmap-volume
         configMap:
           name: homeassistant-configmap
