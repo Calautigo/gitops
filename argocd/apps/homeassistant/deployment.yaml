@@ -36,6 +36,9 @@ spec:
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
+        environment:
+          - PUID=1000
+          - PGID=1000
         resources:
           requests:
             memory: "256Mi"
