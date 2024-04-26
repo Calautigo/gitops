@@ -36,15 +36,17 @@ spec:
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
-        environment:
-          - PUID=1000
-          - PGID=1000
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
         resources:
           requests:
             memory: "256Mi"
           limits:
             memory: "512Mi"
-            cpu: "2.0"
+            cpu: "2"
         ports:
         - containerPort: 8123
         volumeMounts:
