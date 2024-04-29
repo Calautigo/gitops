@@ -24,7 +24,6 @@ spec:
   selector:
     matchLabels:
       app: homeassistant
-  serviceName: "homeassistant"
   replicas: 3
   template:
     metadata:
@@ -45,10 +44,8 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-  volume:
-  - metadata:
-      name: config
-    spec:
+  volumes:
+    - name: config
       accessModes: [ "ReadWriteOncePod" ]
       storageClassName: "longhorn"
       resources:
