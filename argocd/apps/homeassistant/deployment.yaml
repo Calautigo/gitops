@@ -14,7 +14,7 @@ spec:
     targetPort: 8123
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   namespace: homeassistant
   name: homeassistant
@@ -26,13 +26,11 @@ spec:
       app: homeassistant
   serviceName: "homeassistant"
   replicas: 3
-  minReadySeconds: 10
   template:
     metadata:
       labels:
         app: homeassistant
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
       - name: homeassistant
         image: linuxserver/homeassistant:2024.4.4
@@ -47,7 +45,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
-  volumeClaimTemplates:
+  volume:
   - metadata:
       name: config
     spec:
