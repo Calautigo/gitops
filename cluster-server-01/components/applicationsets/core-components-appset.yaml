@@ -5,18 +5,14 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - matrix:
-      generators:
-        - matrix:
-          generators:
-          - git:
-              repoURL: https://github.com/Calautigo/gitops.git
-              revision: main
-              directories:
-              - path: 'cluster-server-01/core/*/*'
+  - git:
+      repoURL: https://github.com/Calautigo/gitops.git
+      revision: main
+      directories:
+      - path: 'cluster-server-01/core/*/*'
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: '{{path[1]}}'
     spec:
       project: default
       syncPolicy:
