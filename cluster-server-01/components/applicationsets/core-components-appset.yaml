@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/Calautigo/gitops.git
       revision: main
       directories:
-      - path: 'cluster-server-01/core/**'
+      - path: 'cluster-server-01/core/**/kustomization.yaml'
   template:
     metadata:
       name: '{{path.basename}}'
