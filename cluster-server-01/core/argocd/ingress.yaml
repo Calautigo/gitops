@@ -1,28 +1,54 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd-server-ingress
+#   namespace: argocd
+#   annotations:
+#     cert-manager.io/cluster-issuer: letsencrypt-production
+# providers:
+#   kubernetesIngress:
+#     ingressEndpoint:
+#       publishedService: "argocd/argocd-server"
+# spec:
+#   ingressClassName: traefik
+#   rules:
+#   - host: argocd.server.schwarz47.at
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: argocd-server
+#             port:
+#               name: https
+#   tls:
+#   - hosts:
+#     - argocd.server.schwarz47.at
+#     secretName: server-schwarz47-at-tls
+
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: argocd-server-ingress
+  name: argocd-server
   namespace: argocd
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
-providers:
-  kubernetesIngress:
-    ingressEndpoint:
-      publishedService: "argocd/argocd-server"
 spec:
-  ingressClassName: traefik
-  rules:
-  - host: argocd.server.schwarz47.at
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              name: https
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`argocd.server.schwarz47.at`)
+      priority: 10
+      services:
+        - name: argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.server.schwarz47.at`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argocd-server
+          port: 80
+          scheme: h2c
   tls:
-  - hosts:
-    - argocd.server.schwarz47.at
     secretName: server-schwarz47-at-tls
