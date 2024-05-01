@@ -8,14 +8,16 @@ spec:
   - git:
       repoURL: https://github.com/Calautigo/gitops.git
       revision: main
-      directories:
-      - path: 'cluster-server-01/apps/**/kustomization.yaml'
+      files:
+      - path: 'cluster-server-01/apps/*'
   template:
     metadata:
       name: '{{path.basename}}'
     spec:
       project: default
       syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true
@@ -30,4 +32,5 @@ spec:
         targetRevision: main
         path: '{{path}}'
       destination:
+        namespace:  '{{path.basename}}'
         server: https://kubernetes.default.svc
