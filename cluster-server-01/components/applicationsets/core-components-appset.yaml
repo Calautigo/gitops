@@ -8,14 +8,25 @@ spec:
   - git:
       repoURL: https://github.com/Calautigo/gitops.git
       revision: main
-      directories:
-      - path: 'cluster-server-01/core/*/*'
+      files:
+      - path: cluster-server-01/core/**/kustomize.yaml
   template:
     metadata:
       name: '{{path[1]}}'
     spec:
       project: default
+      destination:
+        namespace: '{{path[1]}}'
+        server: https://kubernetes.default.svc
+      source:
+        repoURL: https://github.com/Calautigo/gitops.git
+        targetRevision: main
+        path: '{{path}}'
+        directory:
+          recurse: true
       syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true
@@ -25,9 +36,3 @@ spec:
             duration: 15s
             factor: 2
             maxDuration: 5m
-      source:
-        repoURL: https://github.com/Calautigo/gitops.git
-        targetRevision: main
-        path: '{{path}}'
-      destination:
-        server: https://kubernetes.default.svc
