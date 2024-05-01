@@ -5,5 +5,5 @@ resources:
 - argocd-ns.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-patches:
-  - path: helm-patch.yaml
+patchesStrategicMerge:
+  - helm-patch.yaml
