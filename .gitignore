@@ -1,4 +1,3 @@
-charts/**/charts
+**/charts
 
 secret*.yaml
-cluster-server-01/core/cert-manager/issuers/secret-cf-token.yaml
