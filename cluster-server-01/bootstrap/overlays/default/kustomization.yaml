@@ -6,6 +6,3 @@ resources:
 - ../../base
 - ../../../components/applicationsets
 - ../../../components/argocdproj
-
-patches:
-  - path: helm-patch.yaml
