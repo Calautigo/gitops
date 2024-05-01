@@ -9,6 +9,5 @@ helmCharts:
   valuesFile: values.yaml
 
 resources:
-- secret-cf-token.yaml
 - letsencrypt-production.yaml
 - server-schwarz47-at.yaml
