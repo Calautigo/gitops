@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
 - https://github.com/cert-manager/cert-manager/releases/download/v1.14.5/cert-manager.yaml
+- issuers/secret-cf-token.yaml
+- issuers/letsencrypt-production.yaml
+- certificates/server-schwarz47-at.yaml
