@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: mediaserver
-  namespace: media
+  namespace: mediaserver
 spec:
   generators:
   - list:
@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/Calautigo/gitops.git
         targetRevision: main
-        path: cluster-server-01/apps/media/arr/overlays/{{name}}
+        path: cluster-server-01/components/arr/overlays/{{name}}
       destination:
         namespace: media
         server: https://kubernetes.default.svc
