@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
 - ../../bootstrap/overlays/default/
+
+patches:
+  - path: helm-patch.yaml
