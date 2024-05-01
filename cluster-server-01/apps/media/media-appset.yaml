@@ -5,9 +5,11 @@ metadata:
   namespace: mediaserver
 spec:
   generators:
-  - list:
-      elements:
-      - name: radarr
+    - git:
+        repoURL: https://github.com/Calautigo/gitops.git
+        revision: main
+        directories:
+          - path: cluster-server-01/components/arr/overlays/*
   template:
     metadata:
       name: 'media-{{path.basename}}'
@@ -22,7 +24,7 @@ spec:
       source:
         repoURL: https://github.com/Calautigo/gitops.git
         targetRevision: main
-        path: cluster-server-01/components/arr/overlays/{{name}}
+        path: '{{path}}'
       destination:
         namespace: mediaserver
         server: https://kubernetes.default.svc
