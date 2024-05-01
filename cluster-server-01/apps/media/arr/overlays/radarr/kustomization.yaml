@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+images:
+  - name: arr
+    newName: lscr.io/linuxserver/radarr
+    newTag: 5.4.6.8723-ls215
+
+patches:
+  - target:
+      kind: Deployment
+    path: deployment-radarr.yaml
+  - target:
+      kind: Service
+    path: service-radarr.yaml
+  - target:
+      kind: PersistentVolumeClaim
+      name: media-arr
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: radarr-config
+  - target:
+      kind: Ingress
+      name: media-arr-ingress
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: media-radarr-ingress
+  - target:
+      kind: Ingress
+      name: media-arr-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/http/paths/0/path
+        value: /radarr
+  - target:
+      kind: Ingress
+      name: media-arr-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/http/paths/0/backend/service/name
+        value: radarr-service

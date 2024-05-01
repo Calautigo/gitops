@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: media-arr-ingress
+  namespace: mediaserver
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: media.server.schwarz47.at
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: arr-service
+            port:
+              name: http
+  tls:
+  - hosts:
+    - media.server.schwarz47.at
+    secretName: server-schwarz47-at-tls

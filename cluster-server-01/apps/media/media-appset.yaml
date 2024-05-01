@@ -1,18 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apps
-  namespace: argocd
+  name: mediaserver
+  namespace: media
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/Calautigo/gitops.git
-      revision: main
-      directories:
-      - path: cluster-server-01/apps/*
+  - list:
+      elements:
+      - name: radarr
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: 'media-{{path.basename}}'
     spec:
       project: default
       syncPolicy:
@@ -21,16 +19,10 @@ spec:
         automated:
           prune: true
           selfHeal: true
-        retry:
-          limit: 15
-          backoff:
-            duration: 15s
-            factor: 2
-            maxDuration: 5m
       source:
         repoURL: https://github.com/Calautigo/gitops.git
         targetRevision: main
-        path: '{{path}}'
+        path: cluster-server-01/apps/media/arr/overlays/{{name}}
       destination:
-        namespace:  '{{path.basename}}'
+        namespace: media
         server: https://kubernetes.default.svc

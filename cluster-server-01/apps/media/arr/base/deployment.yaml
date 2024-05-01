@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arr
+  namespace: mediaserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arr
+  template:
+    metadata:
+      labels:
+        app: arr
+    spec:
+      containers:
+        - name: arr
+          image: arr:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "5000"
+            - name: PGID
+              value: "5000"
+            - name: TZ
+              value: "Europe/Vienna"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: data
+              mountPath: /data
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+      volumes:
+        - name: data
+          nfs:
+            server: nas.schwarz47.at
+            path: "/mnt/storage-media/tank"
