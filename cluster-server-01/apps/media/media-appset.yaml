@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: mediaserver
-  namespace: mediaserver
+  namespace: argocd
 spec:
   generators:
     - git:
         repoURL: https://github.com/Calautigo/gitops.git
         revision: main
         directories:
-          - path: cluster-server-01/components/arr/overlays/*
+        - path: cluster-server-01/components/arr/overlays/*
   template:
     metadata:
       name: 'media-{{path.basename}}'
