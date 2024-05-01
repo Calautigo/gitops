@@ -5,6 +5,10 @@ metadata:
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
+providers:
+  kubernetesIngress:
+    ingressEndpoint:
+      publishedService: "argocd/argocd-server"
 spec:
   ingressClassName: traefik
   rules:
