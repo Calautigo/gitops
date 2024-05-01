@@ -8,7 +8,4 @@ resources:
 - ../../../components/argocdproj
 
 patches:
-  - target:
-      kind: ConfigMap
-      name: argocd-cm
-    path: helm-patch.yaml
+  - path: helm-patch.yaml
