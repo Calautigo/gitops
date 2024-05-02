@@ -16,7 +16,7 @@ spec:
           service:
             name: radarr-service
             port:
-              name: https
+              number: 80
   tls:
   - hosts:
     - media.server.schwarz47.at
