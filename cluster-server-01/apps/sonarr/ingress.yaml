@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: media.server.schwarz47.at
+  - host: sonarr.server.schwarz47.at
     http:
       paths:
       - path: /sonarr
@@ -19,5 +19,5 @@ spec:
               name: web
   tls:
   - hosts:
-    - media.server.schwarz47.at
+    - sonarr.server.schwarz47.at
     secretName: server-schwarz47-at-tls

@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: media.server.schwarz47.at
+  - host: radarr.server.schwarz47.at
     http:
       paths:
       - path: /radarr
@@ -19,5 +19,5 @@ spec:
               name: web
   tls:
   - hosts:
-    - media.server.schwarz47.at
+    - radarr.server.schwarz47.at
     secretName: server-schwarz47-at-tls
