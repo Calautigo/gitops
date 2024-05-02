@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       destination:
-        namespace:  '{{path.basename}}'
+        namespace:  'core-{{path.basename}}'
         server: https://kubernetes.default.svc
       source:
         repoURL: https://github.com/Calautigo/gitops.git
