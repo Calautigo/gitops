@@ -4,6 +4,3 @@ kind: Kustomization
 resources:
 - ../../bootstrap/overlays/default/
 - ingress.yaml
-
-patches:
-  - path: helm-patch.yaml
