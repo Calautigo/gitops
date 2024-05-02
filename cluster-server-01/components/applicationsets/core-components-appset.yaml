@@ -22,6 +22,8 @@ spec:
         repoURL: https://github.com/Calautigo/gitops.git
         targetRevision: main
         path: '{{path}}'
+        kustomize:
+          enableHelm: true
       syncPolicy:
         syncOptions:
           - CreateNamespace=true

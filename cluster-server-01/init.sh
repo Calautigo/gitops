@@ -1,0 +1,1 @@
+kubectl apply -k https://github.com/Calautigo/gitops/cluster-server-01/bootstrap/overlays/default
