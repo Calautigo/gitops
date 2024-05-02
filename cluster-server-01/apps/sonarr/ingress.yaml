@@ -10,7 +10,7 @@ spec:
   - host: sonarr.server.schwarz47.at
     http:
       paths:
-      - path: /sonarr
+      - path: /
         pathType: Prefix
         backend:
           service:
