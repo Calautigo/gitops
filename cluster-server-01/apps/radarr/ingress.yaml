@@ -1,23 +1,18 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: media-radarr-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
 spec:
-  ingressClassName: traefik
-  rules:
-  - host: media.server.schwarz47.at
-    http:
-      paths:
-      - path: /radarr
-        pathType: Prefix
-        backend:
-          service:
-            name: radarr-service
-            port:
-              number: 80
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`media.server.schwarz47.at`)
+      services:
+        - name: radarr-service
+          port: 80
   tls:
-  - hosts:
-    - media.server.schwarz47.at
     secretName: server-schwarz47-at-tls
