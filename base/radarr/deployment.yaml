@@ -36,7 +36,7 @@ spec:
               memory: "256Mi"
               cpu: "200m"
           ports:
-            - name: http
+            - name: web
               containerPort: 7878
               protocol: TCP
       volumes:
