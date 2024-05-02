@@ -10,7 +10,7 @@ spec:
   - host: media.server.schwarz47.at
     http:
       paths:
-      - path: /
+      - path: /radarr
         pathType: Prefix
         backend:
           service:
