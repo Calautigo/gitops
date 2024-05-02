@@ -1,8 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: media-arr-ingress
-  namespace: mediaserver
+  name: media-radarr-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
@@ -11,11 +10,11 @@ spec:
   - host: media.server.schwarz47.at
     http:
       paths:
-      - path: /
+      - path: /radarr
         pathType: Prefix
         backend:
           service:
-            name: arr-service
+            name: radarr-service
             port:
               name: http
   tls:

@@ -1,21 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arr
-  namespace: mediaserver
+  name: radarr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arr
+      app: radarr
   template:
     metadata:
       labels:
-        app: arr
+        app: radarr
     spec:
       containers:
-        - name: arr
-          image: arr:latest
+        - name: radarr
+          image: lscr.io/linuxserver/radarr:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
@@ -36,7 +35,14 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "200m"
+          ports:
+            - name: http
+              containerPort: 7878
+              protocol: TCP
       volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: radarr-config
         - name: data
           nfs:
             server: nas.schwarz47.at
