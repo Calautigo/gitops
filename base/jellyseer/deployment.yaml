@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jellyseer
-          image: lscr.io/linuxserver/jellyseer:latest
+          image: ghcr.io/hotio/jellyseerr:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
