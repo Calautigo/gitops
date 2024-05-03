@@ -1,9 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: apps-jellyseer
+namespace: apps-jellyseerr
 
 resources:
-- ../../../base/jellyseer
+- ../../../base/jellyseerr
 - ingress.yaml
 

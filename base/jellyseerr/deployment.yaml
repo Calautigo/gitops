@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jellyseer
+  name: jellyseerr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jellyseer
+      app: jellyseerr
   template:
     metadata:
       labels:
-        app: jellyseer
+        app: jellyseerr
     spec:
       containers:
-        - name: jellyseer
+        - name: jellyseerr
           image: ghcr.io/hotio/jellyseerr:latest
           imagePullPolicy: IfNotPresent
           env:
@@ -44,4 +44,4 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: jellyseer-config
+            claimName: jellyseerr-config
