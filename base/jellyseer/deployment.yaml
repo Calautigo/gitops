@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyseer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyseer
+  template:
+    metadata:
+      labels:
+        app: jellyseer
+    spec:
+      containers:
+        - name: jellyseer
+          image: ghcr.io/hotio/jellyseer:latest
+          imagePullPolicy: Always
+          env:
+            - name: PUID
+              value: "5000"
+            - name: PGID
+              value: "5000"
+            - name: TZ
+              value: "Europe/Vienna"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+          ports:
+            - name: web
+              containerPort: 5055
+              protocol: TCP
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyseer-config

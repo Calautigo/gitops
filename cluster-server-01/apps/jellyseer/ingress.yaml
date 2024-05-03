@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: media-jellyseer-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: jellyseer.server.schwarz47.at
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jellyseer-service
+            port:
+              name: web
+  tls:
+  - hosts:
+    - jellyseer.server.schwarz47.at
+    secretName: server-schwarz47-at-tls
