@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: sabnzbd
-          image: ghcr.io/hotio/sabnzbd:latest
+          image: lscr.io/linuxserver/sabnzbd:latest
           imagePullPolicy: Always
           env:
             - name: PUID
