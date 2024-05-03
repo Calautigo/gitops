@@ -15,7 +15,9 @@ spec:
       containers:
         - name: radarr
           image: lscr.io/linuxserver/radarr:5.3.6
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
+          strategy:
+            type: Recreate
           env:
             - name: PUID
               value: "5000"
