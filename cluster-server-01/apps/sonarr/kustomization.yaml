@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: apps-sonarr
 
 resources:
-- ns.yaml
 - ../../../base/sonarr
 - ingress.yaml
 

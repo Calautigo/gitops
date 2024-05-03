@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: apps-radarr
 
 resources:
-- ns.yaml
 - ../../../base/radarr
 - ingress.yaml
 
