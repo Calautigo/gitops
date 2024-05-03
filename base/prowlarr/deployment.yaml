@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sonarr
+  name: prowlarr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sonarr
+      app: prowlarr
   template:
     metadata:
       labels:
-        app: sonarr
+        app: prowlarr
     spec:
       containers:
-        - name: sonarr
-          image: ghcr.io/hotio/sonarr:latest
+        - name: prowlarr
+          image: ghcr.io/hotio/prowlarr:latest
           imagePullPolicy: Always
           env:
             - name: PUID
@@ -26,8 +26,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /data
           resources:
             requests:
               memory: "256Mi"
@@ -46,8 +44,4 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: sonarr-config
-        - name: data
-          nfs:
-            server: nas.schwarz47.at
-            path: "/mnt/storage-media/tank"
+            claimName: prowlarr-config
