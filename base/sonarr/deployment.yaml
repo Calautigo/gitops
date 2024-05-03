@@ -16,8 +16,6 @@ spec:
         - name: sonarr
           image: lscr.io/linuxserver/sonarr:latest
           imagePullPolicy: Always
-          strategy:
-            type: Recreate
           env:
             - name: PUID
               value: "5000"

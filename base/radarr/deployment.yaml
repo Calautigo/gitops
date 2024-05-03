@@ -22,8 +22,6 @@ spec:
         - name: radarr
           image: ghcr.io/hotio/radarr:latest
           imagePullPolicy: Always
-          strategy:
-            type: Recreate
           env:
             - name: PUID
               value: "5000"
