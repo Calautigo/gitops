@@ -41,6 +41,10 @@ spec:
             - name: web
               containerPort: 8989
               protocol: TCP
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
       volumes:
         - name: config
           persistentVolumeClaim:
