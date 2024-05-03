@@ -26,6 +26,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+            - name: data
+              mountPath: /data
           resources:
             requests:
               memory: "256Mi"
@@ -45,3 +47,7 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: sabnzbd-config
+        - name: data
+          nfs:
+            server: nas.schwarz47.at
+            path: "/mnt/storage-media/tank/usenet"
