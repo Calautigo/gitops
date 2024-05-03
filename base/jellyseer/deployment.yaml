@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: jellyseer
-          image: ghcr.io/hotio/jellyseer:latest
-          imagePullPolicy: Always
+          image: lscr.io/linuxserver/jellyseer:latest
+          imagePullPolicy: IfNotPresent
           env:
             - name: PUID
               value: "5000"

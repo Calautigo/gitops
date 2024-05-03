@@ -20,8 +20,8 @@ spec:
       #         value: "1"
       containers:
         - name: radarr
-          image: ghcr.io/hotio/radarr:latest
-          imagePullPolicy: Always
+          image: lscr.io/linuxserver/radarr:latest
+          imagePullPolicy: IfNotPresent
           env:
             - name: PUID
               value: "5000"

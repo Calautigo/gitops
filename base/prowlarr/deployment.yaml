@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: prowlarr
-          image: ghcr.io/hotio/prowlarr:latest
-          imagePullPolicy: Always
+          image: lscr.io/linuxserver/prowlarr:latest
+          imagePullPolicy: IfNotPresent
           env:
             - name: PUID
               value: "5000"
