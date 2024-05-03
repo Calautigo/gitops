@@ -35,7 +35,7 @@ spec:
               cpu: "200m"
           ports:
             - name: web
-              containerPort: 8989
+              containerPort: 9696
               protocol: TCP
       dnsConfig:
         options:
