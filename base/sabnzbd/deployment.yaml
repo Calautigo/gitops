@@ -33,10 +33,10 @@ spec:
           resources:
             requests:
               memory: "1024Mi"
-              cpu: "200m"
+              cpu: "2"
             limits:
               memory: "2048Mi"
-              cpu: "500m"
+              cpu: "4"
           ports:
             - name: web
               containerPort: 8080
